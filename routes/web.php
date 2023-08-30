@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/fonte_de_recurso', [App\Http\Controllers\FonteDeRecursoController::class, 'index'])->name('fonte_de_recurso');
+Route::post('/fonte_de_recurso', [App\Http\Controllers\FonteDeRecursoController::class, 'cadastrarFonte'])->name('cadastrarFonte');
 
 Auth::routes();
 

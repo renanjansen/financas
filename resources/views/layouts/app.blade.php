@@ -83,7 +83,9 @@
                 </div>
             </div>
         </nav>
-
+        @if (session('msg'))
+            <p class="msg text-center" style="background-color: red; border-color:black;">{{ session('msg') }}</p>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>
