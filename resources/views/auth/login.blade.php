@@ -1,9 +1,20 @@
 @extends('layouts.app')
+<style>
+
+    .background-div {
+        background-image: url('https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_1280.jpg');
+        /* Substitua pelo caminho correto para a sua imagem */
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        /* Isso faz com que a div ocupe toda a altura da tela */
+    }
+</style>
 
 @section('content')
-<div class="container">
+<div class="container background-div">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8" >
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 

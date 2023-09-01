@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('fonte_de_recurso', function (Blueprint $table) {
-
-           $table->integer('tipofonte')->unsigned();
+            $table->dropColumn('valor');
         });
     }
 
@@ -27,7 +26,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('fonte_de_recurso', function (Blueprint $table) {
-            $table->dropColumn('tipofonte');
-        });
+
+            $table->integer('tipofonte')->unsigned();
+         });
     }
 };

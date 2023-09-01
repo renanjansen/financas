@@ -86,7 +86,7 @@
         @if (session('msg'))
             <p class="msg text-center" style="background-color: red; border-color:black;">{{ session('msg') }}</p>
         @endif
-        <main class="py-4">
+        <main class="py-4 background-div">
             @yield('content')
         </main>
     </div>

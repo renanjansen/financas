@@ -18,11 +18,10 @@ class FonteDeRecursoController extends Controller
 
         $fonte_de_recurso = new fonte_de_recurso;
         $fonte = strtoupper(  $request->fonte_de_recurso );
-        $valor = $request->valor;
+
         $tipofonte = $request->tipo_de_fonte;
         $fonte_de_recurso->fonte_de_recurso = $fonte;
         $fonte_de_recurso->tipofonte = $tipofonte;
-        $fonte_de_recurso->valor = $valor;
         $fonte_de_recurso->save();
         if ($fonte_de_recurso->save()) {
             return redirect('/fonte_de_recurso')->with('msg', 'Fonte de recurso cadastrada com sucesso!');

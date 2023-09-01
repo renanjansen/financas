@@ -16,18 +16,18 @@
                 <option value="2">Outras fontes de renda</option>
             </select>
         </div>
-        <label for="valor" class="form-label">Valor: </label>
-        <div class="input-group mb-3">
-            <span class="input-group-text">$</span>
-            <input id="valor" class="form-control" aria-label="Amount (to the nearest dollar)" name="valor" type="number" step="0.01" pattern="[0-9]+(\.[0-9]+)?" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Castrar fonte de recurso</button>
       </form>
       <div class="card justify-content-center text-center mt-4 p-3">
+        <h2>Fontes de recursos cadastradas</h2>
         <ul class="list-group list-group-flush">
             @if ($fonte_de_recurso)
                 @foreach ($fonte_de_recurso as $fonte)
-                <li class="list-group-item">Fonte: {{ $fonte->fonte_de_recurso }} Rendimento: R$: {{ $fonte->valor }}</li>
+                <li class="list-group-item"><strong> Fonte de recurso: </strong> {{ $fonte->fonte_de_recurso }}&nbsp;  <strong>Tipo de fonte: </strong> @if ($fonte->tipofonte == 1)
+                    Salario
+                @elseif ($fonte->tipofonte == 2)
+                    Outras fontes de renda</li>
+                @endif
                 @endforeach
             @else
             <li class="list-group-item">Sem fontes cadastradas</li>
