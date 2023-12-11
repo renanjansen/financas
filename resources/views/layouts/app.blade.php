@@ -29,7 +29,7 @@
     <div id="app">
         <nav class="text-bg-warning navbar navbar-expand-md shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'GestFin') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

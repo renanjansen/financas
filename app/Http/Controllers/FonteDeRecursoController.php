@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\fonte_de_recurso;
+use App\Models\FonteDeRecurso;
 
 class FonteDeRecursoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        $fonte_de_recurso = \App\Models\fonte_de_recurso::all();
+        $fonte_de_recurso = FonteDeRecurso::all();
 
         return view('fonte_de_recurso', ['fonte_de_recurso' => $fonte_de_recurso]);
 
     }
     public function cadastrarFonte (Request $request) {
 
-        $fonte_de_recurso = new fonte_de_recurso;
+        $fonte_de_recurso = new FonteDeRecurso;
         $fonte = strtoupper(  $request->fonte_de_recurso );
 
         $tipofonte = $request->tipo_de_fonte;

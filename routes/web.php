@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FonteDeRecursoController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SalarioController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,10 +23,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/fonte_de_recurso', [App\Http\Controllers\FonteDeRecursoController::class, 'index'])->name('fonte_de_recurso');
-Route::post('/fonte_de_recurso', [App\Http\Controllers\FonteDeRecursoController::class, 'cadastrarFonte'])->name('cadastrarFonte');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/fonte_de_recurso', [FonteDeRecursoController::class, 'index'])->name('fonte_de_recurso');
+Route::get('/salario',[SalarioController::class, 'index'])->name('salario');
+Route::post('/fonte_de_recurso', [FonteDeRecursoController::class, 'cadastrarFonte'])->name('cadastrarFonte');
+Route::post('/salario', [SalarioController::class, 'cadastrarSalarios'])->name('cadastrarSalarios');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
