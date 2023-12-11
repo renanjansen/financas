@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
+use App\Models\Salarios;
 
 class HomeController extends Controller
 {
@@ -30,35 +31,27 @@ class HomeController extends Controller
 
     public function grafico()
     {
-        $lava = new Lavacharts; // See note below for Laravel
+        $lava = new Lavacharts;
 
-        $receita = $lava->DataTable();
+        // ORDENANDO A BUSCA POR DATA
+        $salarios = Salarios::orderBy('data', 'asc')->get();
 
-        $receita->addDateColumn('Date')
-                ->addNumberColumn('Receita')
-                ->addRow(['2023-01-01', 2940])
-                ->addRow(['2023-02-01', 2870])
-                ->addRow(['2023-03-01', 3100])
-                ->addRow(['2023-04-01', 4234])
-                ->addRow(['2023-05-01', 2598])
-                ->addRow(['2023-06-01', 2512])
-                ->addRow(['2023-07-01', 2942])
-                ->addRow(['2023-08-01', 3200])
-                ->addRow(['2023-09-01', 4345])
-                ->addRow(['2023-10-01', 3250])
-                ->addRow(['2023-11-01', 5100])
-                ->addRow(['2023-12-01', 4907]);
+        $dataTable = $lava->DataTable();
+        $dataTable->addDateColumn('Date')->addNumberColumn('Receita');
 
-        $lava->AreaChart('receita', $receita, [
-            'title' => 'Registros de receitas',
+        foreach ($salarios as $salario) {
+            $dataTable->addRow([$salario->data, $salario->valor]);
+        }
+
+        $chartOptions = [
+            'title' => 'Registros de Receitas',
             'legend' => [
                 'position' => 'in'
             ]
-        ]);
+        ];
+
+        $lava->AreaChart('receita', $dataTable, $chartOptions);
 
         return $lava->render('AreaChart', 'receita', 'pop_div');
-
-
-
     }
 }

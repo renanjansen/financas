@@ -19,7 +19,7 @@
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Receitas <i class="bi bi-cash-coin"></i></button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('fonte_de_recurso') }}">Cadastrar fonte</a></li>
-                        <li><a class="dropdown-item" href="{{ route('salario') }}">Salário</a></li>
+                        <li><a class="dropdown-item" href="{{ route('salario') }}">Registrar Salários</a></li>
                         <li><a class="dropdown-item" href="#">Outras fontes de renda</a></li>
                     </ul>
                 </div>
