@@ -20,7 +20,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('fonte_de_recurso') }}">Cadastrar fonte</a></li>
                         <li><a class="dropdown-item" href="{{ route('salario') }}">Registrar Salários</a></li>
-                        <li><a class="dropdown-item" href="#">Outras fontes de renda</a></li>
+                        <li><a class="dropdown-item" href="{{route('outras_fontes')}}">Outras fontes de renda</a></li>
                     </ul>
                 </div>
                 <div id="pop_div">

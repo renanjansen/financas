@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('salarios', function (Blueprint $table) {
+        Schema::create('outras_fontes', function (Blueprint $table) {
             $table->id();
             $table->decimal('valor', 10, 2);
             $table->date('data');
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('tipofonte')->references('id')->on('fonte_de_recurso');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salarios');
+        Schema::dropIfExists('outras_fontes');
     }
 };

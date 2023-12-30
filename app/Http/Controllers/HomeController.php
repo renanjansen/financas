@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use App\Models\Salarios;
+use App\Models\OutrasFontes;
 
 class HomeController extends Controller
 {
@@ -35,12 +36,17 @@ class HomeController extends Controller
 
         // ORDENANDO A BUSCA POR DATA
         $salarios = Salarios::orderBy('data', 'asc')->get();
+        $outras_fontes = OutrasFontes::orderBy('data', 'asc')->get();
 
         $dataTable = $lava->DataTable();
-        $dataTable->addDateColumn('Date')->addNumberColumn('Receita');
+        $dataTable->addDateColumn('Date')->addNumberColumn('Salários')->addNumberColumn('Outras Receitas');
 
         foreach ($salarios as $salario) {
-            $dataTable->addRow([$salario->data, $salario->valor]);
+            $dataTable->addRow([$salario->data, $salario->valor, null]);
+        }
+
+        foreach ($outras_fontes as $outra_fonte) {
+            $dataTable->addRow([$outra_fonte->data, null, $outra_fonte->valor]);
         }
 
         $chartOptions = [
@@ -54,4 +60,5 @@ class HomeController extends Controller
 
         return $lava->render('AreaChart', 'receita', 'pop_div');
     }
+
 }
