@@ -23,13 +23,13 @@
                         <li><a class="dropdown-item" href="{{route('outras_fontes')}}">Outras fontes de renda</a></li>
                     </ul>
                 </div>
-                <div id="pop_div">
+                <div id="pop_div" class="bg-transparent">
                     {!! $grafico !!}
                 </div>
             </div>
 
-            <div class="card col">
-                <div class="btn-group dropdown">
+            <div class="card col ">
+                <div class="btn-group dropdown bg-transparent">
                     <button class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Despesas <i class="bi bi-calculator-fill"></i></button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/">Moradia</a></li>
