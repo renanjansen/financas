@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('despesas', function (Blueprint $table) {
+        Schema::create('fonte_de_despesa', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fonte_id');
+            $table->string('fonte_de_despesa');
             $table->timestamps();
-
-            $table->foreign('fonte_id')->references('id')->on('fonte_de_despesa');
+            $table->integer('tipofonte')->unsigned();
+            $table->unsignedBigInteger('user_id'); // Adicione esta linha
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -29,9 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('despesas', function (Blueprint $table) {
-            $table->dropForeign(['fonte_id']); // Remove a chave estrangeira
-        });
-        Schema::dropIfExists('despesas'); 
+        Schema::dropIfExists('fonte_de_despesa');
     }
 };

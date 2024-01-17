@@ -21,9 +21,19 @@ class OutrasFontesController extends Controller
     public function index()
     {
         $outras_fontes = OutrasFontes::all();
-        
-        foreach ($outras_fontes as $outra_fonte) {
-            $fonte_de_recurso = FonteDeRecurso::where('tipofonte', $outra_fonte->tipofonte)->get();
+        $fonte_de_recurso = [];
+
+        if ($outras_fontes->isEmpty()) {
+
+            $outras_fontes = FonteDeRecurso::where('tipofonte','<>',1)->get();
+            $fonte_de_recurso = $outras_fontes;
+
+        } else {
+            
+            // Se $outras_fontes não estiver vazio, você pode continuar com o loop.
+            foreach ($outras_fontes as $outra_fonte) {
+                $fonte_de_recurso = FonteDeRecurso::where('tipofonte', $outra_fonte->tipofonte)->get();
+            }
         }
 
 

@@ -14,60 +14,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
-    <!--Início Charts -->
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawDespesasChart);
-
-        function drawDespesasChart() {
-
-          
-            var dadosDespesas = {!! $grafico_despesas !!};
-
-            var colData = dadosDespesas.cols[0].label;
-            var colSalarios = dadosDespesas.cols[1].label;
-            var linhas = dadosDespesas.rows;
-
-            console.log(linhas);
-
-
-            // Create the data table for Sarah's pizza.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', colData);
-            data.addColumn('number', colSalarios);
-            data.addRows([
-
-                ['2013', 1000]
-
-
-            ]);
-
-
-            var options = {
-
-                title: 'Registros de Despesas',
-                legend: {
-                    position: 'in'
-                }
-
-            };
-
-
-            // Instantiate and draw the chart for Anthony's pizza.
-            var despesasChart = new google.visualization.AreaChart(document.getElementById('despesas_div'));
-            despesasChart.draw(data, options);
-
-        }
-    </script>
-
-
-    <!-- Fim Charts -->
-
+   
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_default')
 
 @section('content')
     <div class="justify-content-center text-center p-3">

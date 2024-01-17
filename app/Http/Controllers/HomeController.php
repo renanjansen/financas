@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use App\Models\Salarios;
 use App\Models\OutrasFontes;
+use App\Models\Despesas;
 
 class HomeController extends Controller
 {
@@ -26,11 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $grafico = $this->grafico();
-        return view('home', ['grafico' => $grafico]);
+        $grafico_receitas = $this->grafico_receitas();
+        $grafico_despesas = $this->grafico_despesas();
+
+        //dd($grafico_receitas);
+        return view('home', [
+            'grafico_receitas' => $grafico_receitas,
+           'grafico_despesas'  => $grafico_despesas
+        ]);
     }
 
-    public function grafico()
+    public function grafico_receitas()
     {
         $lava = new Lavacharts;
 
@@ -58,7 +65,38 @@ class HomeController extends Controller
 
         $lava->AreaChart('receita', $dataTable, $chartOptions);
 
-        return $lava->render('AreaChart', 'receita', 'pop_div');
+        return $lava->render('AreaChart', 'receita', 'receitas_div');
     }
+
+    public function grafico_despesas()
+    {
+        $lava = new Lavacharts;
+
+        // ORDENANDO A BUSCA POR DATA
+        $despesas = Despesas::all();
+
+
+        $dataTable = $lava->DataTable();
+        $dataTable->addDateColumn('Data')->addNumberColumn('Salários');
+
+        foreach ($despesas as $despesa) {
+            $dataTable->addRow([$despesa->data, $despesa->valor, null]);
+        }
+
+
+
+        $chartOptions = [
+            'title' => 'Registros de Despesas',
+            'legend' => [
+                'position' => 'in'
+            ]
+        ];
+
+        $lava->AreaChart('despesa', $dataTable, $chartOptions);
+        // $lava->render('AreaChart', 'despesa', 'despesas_div')
+
+        return $dataTable->toJson();
+    }
+
 
 }
